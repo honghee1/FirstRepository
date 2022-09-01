@@ -45,7 +45,6 @@ public class MainController {
 
 	@RequestMapping("/close.do")
 	public String close(Model model, String mcode) {
-		System.out.println(mcode);
 		return "close";
 	}
 
@@ -60,14 +59,12 @@ public class MainController {
 
 	@RequestMapping("/updatemovie-management.do")
 	public String updatemovie_management(String mcode) {
-		System.out.println(mcode);
 		return "redirect:/";
 	}
 
 	@RequestMapping("/MyMovieList-management.do")
 	public String MyMovieList_management(Model model) {
 		List<MovieDTO> list = movieservice.selectMovieList();
-		System.out.println(list.toString());
 		model.addAttribute("list", list);
 		return "MyMovieList-management";
 	}
@@ -80,7 +77,6 @@ public class MainController {
 	@RequestMapping("/deletemovie.do")
 	public String deretemovie(Model model, String mcode) {
 		String[] index = mcode.split(",");
-		System.out.println(index);
 		movieservice.deleteMovie(index);
 		return "redirect:/MyMovieList.do";
 	}
@@ -101,9 +97,7 @@ public class MainController {
 	 */
 	@RequestMapping("/select_cinema_branch.do")
 	public String select_cinema_branch(Model model, String cinemacode) {
-		System.out.println(cinemacode);
 		List<ScreenDTO> list = movieservice.selectScreenList(cinemacode);
-		System.out.println(list.toString());
 		model.addAttribute("list", list);
 		return "select_cinema_branch";
 	}
@@ -129,7 +123,6 @@ public class MainController {
 		session.setAttribute("cinemacode", cinemacode);
 		session.setAttribute("name", name);
 		model.addAttribute("Cinemalist", Cinemalist);
-		System.out.println(Cinemalist);
 		return "openAPI";
 	}
 
@@ -155,8 +148,6 @@ public class MainController {
 	@RequestMapping("/uploadmovie.do")
 	public String boardWrite(Model model, MovieDTO dto, ScreenMovieDTO scdto, MultipartHttpServletRequest request,
 			String close, String update) {
-		System.out.println(update);
-		System.out.println(dto);
 		if (update != null) {
 			dto.setMcode(update);
 			scdto.setmcode(update);
@@ -193,6 +184,8 @@ public class MainController {
 				userRoot.mkdirs();
 
 			List<MultipartFile> fileList = request.getFiles("file");
+			System.out.println(fileList.toString());
+			System.out.println("asdas1d23a1d23as1da32sd");
 			int i = 1;
 			for (MultipartFile f : fileList) {
 				String originalFileName = f.getOriginalFilename();
@@ -220,6 +213,7 @@ public class MainController {
 
 	@RequestMapping("fileDown.do")
 	public void fileDown(int fno, String mcode, HttpServletResponse response) throws IOException {
+		System.out.println("asdasdasda1231312312123");
 		String path = movieservice.selectFile(mcode, fno);
 		File file = new File(path);
 		response.setHeader("Content-Disposition", "attachement;fileName=" + file.getName());
@@ -245,11 +239,9 @@ public class MainController {
 		MovieDTO dto = movieservice.selectMovieDTO(mcode);
 		List<FileDTO> Filelist = movieservice.selectFilePath(mcode);
 		ScreenMovieDTO scdto = movieservice.selectScreenMovieList(mcode);
-		System.out.println(Filelist.toString());
 		model.addAttribute("movie", dto);
 		model.addAttribute("Filepath", Filelist);
-		model.addAttribute("sclist", scdto);
-		System.out.println(update);
+		model.addAttribute("scdto", scdto);
 
 		return "movie_detail_view";
 	}

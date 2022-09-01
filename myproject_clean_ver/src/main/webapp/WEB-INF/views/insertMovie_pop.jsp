@@ -58,13 +58,13 @@ $(function(){
 		<p>키워드<input type="text" name="keywords" value="<%=keywords %>"placeholder="키워드"></p>
 		<p>줄거리<input type="text" name="plotText" value="<%=plotText %>"placeholder="줄거리"></p>
 		<p>상세보기 페이지<input type="text" name="kmdbUrl" value="<%=kmdbUrl %>"placeholder="상세보기 페이지"></p>
-		<p><button>업로드</button></p>
 		<div id="file_form">
 						<p><input type="file" name="file"> 
 						<button type="button" id="plus">+</button> <button type="button" id="minus">-</button></p>
 						<p><input type="file" name="file"></p>
 						<p><input type="file" name="file"></p>
 		</div>
+		<p><button>저장</button></p>
 	</form>
 </body>
 </html>

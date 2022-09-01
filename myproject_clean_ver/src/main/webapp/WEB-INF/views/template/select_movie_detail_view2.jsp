@@ -7,20 +7,6 @@
 <meta charset="UTF-8">
 <title>pop_title</title>
 <script type="text/javascript">
-$(function(){
-	console.log("asd");
-	var count = 3;//첨부파일 태그 개수
-	$("#plus").click(function(){
-		if(count == 5) return;
-		count++;
-		$("#file_form").append("<p><input type='file' name='file'></p>");
-	});
-	$("#minus").click(function(){
-		if(count == 1) return;
-			$(this).parent().parent().children("p").last().remove();
-		count--;
-	});
-});
 </script>
 </head>
 <body>
@@ -50,15 +36,15 @@ $(function(){
 								<img src="fileDown.do?fno=${f.fno}&mcode=${f.mcode}">
 							</c:if> 
 						</c:forEach>
-		<div id="file_form">
-						<p><input type="file" name="file"> 
-						<button type="button" id="plus">+</button> <button type="button" id="minus">-</button></p>
-						<p><input type="file" name="file"></p>
-						<p><input type="file" name="file"></p>
-		</div>
-		<p><button>저장</button></p>
+		<p><input type="file" name="file1">
+		   <button type="button" id="plus">+</button>
+		   <button type="button" id="minus">-</button>
+	    </p>
+		<p><input type="file" name="file2"></p>
+		<p><input type="file" name="file3"></p>
 		<p><input type="hidden" name="update" value=${requestScope.movie.mcode }></p>
-		<p><button>뒤로가기</button></p>
+		<p><button>이미지 업로드</button></p>
+		<p><button>저장</button></p><p><button>뒤로가기</button></p>
 	</form>
 </body>
 </html>

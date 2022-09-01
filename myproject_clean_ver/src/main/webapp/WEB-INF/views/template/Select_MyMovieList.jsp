@@ -133,8 +133,8 @@ $(function() {
 							<tr>
 								<td><input type="checkbox" id="horns" name="user_CheckBox"></td>
 								<td>${dto.mcode }</td>
-								<td> ${ScreenMovielist[status.index].startdate}</td>
-								<td> ${ScreenMovielist[status.index].enddate}</td>
+								<td> ${dto.startdate}</td>
+								<td> ${dto.enddate}</td>
 								<td><a href="movieView.do?mcode=${dto.mcode }&update=y">
 										${dto.title }</a></td>
 								<td>${dto.titleEng }</td>

@@ -26,6 +26,7 @@ public interface MovieMapper {
 	void insertScreenMovie(ScreenMovieDTO scdto);
 	List<ScreenMovieDTO> selectSYSDATEScreenMovie();
 	void updateMovie(MovieDTO dto);
+	void updateScreenMovie(ScreenMovieDTO scdto);
 	/* void updateScreenMovie(ScreenMovieDTO scdto); */
 	 ScreenMovieDTO selectScreenMovieList(String mcode);
 }

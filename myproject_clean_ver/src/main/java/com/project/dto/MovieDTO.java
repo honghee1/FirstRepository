@@ -21,8 +21,51 @@ public class MovieDTO {
 	private String plotText;
 	private String kmdbUrl;
 	
+	private String startdate;
+	private String enddate;
+	
 	public MovieDTO() {
 		super();
+	}
+	
+	public String getStartdate() {
+		return startdate;
+	}
+
+	public void setStartdate(String startdate) {
+		this.startdate = startdate;
+	}
+
+	public String getEnddate() {
+		return enddate;
+	}
+
+	public void setEnddate(String enddate) {
+		this.enddate = enddate;
+	}
+
+	public MovieDTO(String mcode, String title, String titleEng, String directorNm, String directorEnNm, String actorNm,
+			String actorEnNm, String company, String nation, String genre, String rating, String runtime,
+			String repRlsDate, String keywords, String plotText, String kmdbUrl, String startdate, String enddate) {
+		super();
+		this.mcode = mcode;
+		this.title = title;
+		this.titleEng = titleEng;
+		this.directorNm = directorNm;
+		this.directorEnNm = directorEnNm;
+		this.actorNm = actorNm;
+		this.actorEnNm = actorEnNm;
+		this.company = company;
+		this.nation = nation;
+		this.genre = genre;
+		this.rating = rating;
+		this.runtime = runtime;
+		this.repRlsDate = repRlsDate;
+		this.keywords = keywords;
+		this.plotText = plotText;
+		this.kmdbUrl = kmdbUrl;
+		this.startdate = startdate;
+		this.enddate = enddate;
 	}
 
 	public MovieDTO(String mcode, String title, String titleEng, String directorNm, String directorEnNm, String actorNm,

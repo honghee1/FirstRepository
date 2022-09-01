@@ -25,9 +25,13 @@ public class movieService {
 		String mcode = mapper.selectMovieCode();
 		dto.setMcode(mcode);
 		scdto.setmcode(mcode);
-		System.out.println(dto);
-		System.out.println(scdto);
 		mapper.insertMovie(dto);
+		if(scdto.getStartdate() == null) {
+			scdto.setStartdate("");
+		}
+		if(scdto.getEnddate() == null) {
+			scdto.setEnddate("");
+		}
 		mapper.insertScreenMovie(scdto);
 		return mcode;
 	}
@@ -83,7 +87,7 @@ public class movieService {
 		System.out.println(dto);
 		System.out.println(scdto);
 		mapper.updateMovie(dto);
-		/* mapper.updateScreenMovie(scdto); */
+		mapper.updateScreenMovie(scdto);
 		return mcode;
 	}
 

@@ -11,9 +11,9 @@
  	</insert>
 	<insert id="insertScreenMovie" parameterType="screenmovie">
 			insert into "SCREEN_MOVIE"("mcode",STARTDATE,ENDDATE) values(#{mcode},#{startdate},#{enddate}) 	
- 							</insert>
+ 	</insert>
  	<select id="selectAllMovie" resultType="movie">
-  		SELECT "mcode",title,titleEng,directorNm,directorEnNm,actorNm,actorEnNm,company,nation,genre,rating,runtime,to_char(REPRLSDATE,'yyyymmdd') as REPRLSDATE,"KEYWORDS",PLOTTEXT,"kmdbUrl" FROM "MOVIEDB"
+  		SELECT to_char(sm.enddate,'yyyy-mm-dd') as enddate,to_char(sm.startdate,'yyyy-mm-dd') as startdate,m."mcode",title,titleEng,directorNm,directorEnNm,actorNm,actorEnNm,company,nation,genre,rating,runtime,to_char(REPRLSDATE,'yyyy-mm-dd') as REPRLSDATE,"KEYWORDS",PLOTTEXT,"kmdbUrl" FROM MOVIEDB m,screen_movie sm WHERE m."mcode" = sm."mcode"(+)
   	</select>
  	<select id="selectSYSDATEScreenMovie" resultType="screenmovie">
   		select * from SCREEN_MOVIE
@@ -29,7 +29,9 @@
   		select s.screencode,s.cinemacode,s.screenname from screen s WHERE s.cinemacode = #{cinemacode}
   	</select>
   	<select id="selectMovieDTO" parameterType="String"	resultType="movie">
-		select * from "MOVIEDB" where "mcode" = #{mcode}
+		select "mcode",title,titleEng,directorNm,directorEnNm,actorNm,actorEnNm,
+		company,nation,genre,rating,runtime,to_char(REPRLSDATE,'yyyy-mm-dd')as repRlsDate,"KEYWORDS",PLOTTEXT,
+		"kmdbUrl" from "MOVIEDB" where "mcode" = #{mcode}
 	</select>
   	<select id="selectFilePath" parameterType="String"	resultType="file">
 		select * from "MOVIE_FILE" where "MCODE" = #{mcode}
@@ -50,8 +52,11 @@
  	<update id="updateMovie" parameterType="movie">
  		 update MOVIEDB set title = #{title}, titleEng = #{titleEng}, directorNm = #{directorNm}, directorEnNm = #{directorEnNm}, actorNm=#{actorNm}, actorEnNm = #{actorEnNm}, company = #{company}, nation = #{nation}, genre = #{genre},rating=#{rating},runtime=#{runtime},REPRLSDATE=#{repRlsDate},"KEYWORDS"=#{keywords},PLOTTEXT=#{plotText},"kmdbUrl"=#{kmdbUrl} WHERE "mcode" = #{mcode}
  	</update> 
+ 	<update id="updateScreenMovie" parameterType="screenmovie">
+ 		update screen_movie set startdate = #{startdate}, enddate = #{enddate}  WHERE "mcode" = #{mcode}
+ 	</update> 
 	 <select id="selectScreenMovieList" parameterType="String" resultType="screenmovie">
-		select * from screen_movie where "mcode" = #{mcode}
+		select screencode,"mcode",to_char(enddate,'yyyy-mm-dd')as enddate,to_char(startdate,'yyyy-mm-dd')as startdate from screen_movie where "mcode" = #{mcode}
 	</select> 
 	<!--테스트  -->
  	<!--select sm.startdate,mdb.* from SCREEN_MOVIE sm,"MOVIEDB" mdb where mdb."mcode" = sm."mcode"(+);  -->
